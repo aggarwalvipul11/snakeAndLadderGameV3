@@ -2,11 +2,12 @@
 
 echo "================ Welcome to SNAKES AND LADDERS ================"
 
-#Apply values to variables
+#CONSTANTS
 SINGLE_PLAYER=1;
 GOAL_OF_THE_GAME=100;
 
 playerLivePosition=0;
+collectDiceRollsWinGame=0;
 
 PLAYER_GETS_NO_PLAY=0;
 PLAYER_GETS_LADDER=1;
@@ -26,15 +27,17 @@ function playerPositionTrack() {
 			;;
 		$PLAYER_GETS_LADDER)
 			checksPlayerPositionInCaseOfLadder
+			((collectDiceRollsWinGame++))
 			;;
 		$PLAYER_GETS_SNAKE)			
 			checksPlayerPositionInCaseOfSnake
 			;;
 	esac
+    echo "After dice rolls, player live positon status is: $playerLivePosition"
 }
 
 function checksPlayerPositionInCaseOfLadder() {
-	if [[ $(( $playerLivePosition + $randomDiceNumber )) -gt $GOAL_OF_THE_GAME ]]
+	if [[ $(( $playerLivePosition + $randomDiceNumber )) -gt $goalOfTheGame ]]
 	then
 		playerLivePosition=$((playerLivePosition));
 	else
@@ -56,7 +59,8 @@ function gameSnakeNLadderControlPanel() {
 	do
 		playerPositionTrack
 	done
+	echo "Report the dice was played by player to win is: $collectDiceRollsWinGame"
 }
 
 gameSnakeNLadderControlPanel
-#End of Use Case 05
+#End of Use Case 06
