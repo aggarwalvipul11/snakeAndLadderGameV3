@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/bash 
 
 echo "================ Welcome to SNAKES AND LADDERS ================"
 
-#CONSTANTS
+#Apply values to variables
 SINGLE_PLAYER=1;
 GOAL_OF_THE_GAME=100;
 
@@ -13,33 +13,50 @@ PLAYER_GETS_LADDER=1;
 PLAYER_GETS_SNAKE=2;
 
 function playerThrowsDice() {
-	echo $((RANDOM%6+1))
+	echo $(($((RANDOM %6))+1))
 }
 
-function playerPostionTrack() {
-	playerOptions=$((RANDOM%3))
-	randomDiceNumber=$((playerThrowDice))
+
+function playerPositionTrack() {
+	playerOptions=$((RANDOM %3))
+	randomDiceNumber=$(playerThrowsDice )
 	case $playerOptions in
 		$PLAYER_GETS_NO_PLAY)
 			playerLivePosition=$((playerLivePosition))
 			;;
 		$PLAYER_GETS_LADDER)
-			playerLivePosition=$((playerLivePosition+randomDiceNumber))
+			checksPlayerPositionInCaseOfLadder
 			;;
 		$PLAYER_GETS_SNAKE)			
-			if [[ $playerLivePosition -lt $randomDiceNumber ]]
-			then
-				playerLivePosition=$((playerLivePosition))
-			else
-				playerLivePosition=$((playerLivePosition-randomDiceNumber))
-			fi
+			checksPlayerPositionInCaseOfSnake
 			;;
 	esac
 }
 
-while [[ playerLivePosition -le goalOfTheGame ]]
-do
-	playerPositionTrack
-done
+function checksPlayerPositionInCaseOfLadder() {
+	if [[ $(( $playerLivePosition + $randomDiceNumber )) -gt $GOAL_OF_THE_GAME ]]
+	then
+		playerLivePosition=$((playerLivePosition));
+	else
+		playerLivePosition=$((playerLivePosition+randomDiceNumber));
+	fi
+}
 
-#End of Use Case 04
+function checksPlayerPositionInCaseOfSnake() {
+	if [[ $playerLivePosition -lt $randomDiceNumber ]]
+	then
+		playerLivePosition=$((playerLivePosition));
+	else
+		playerLivePosition=$((playerLivePosition-randomDiceNumber));
+	fi
+}
+
+function gameSnakeNLadderControlPanel() {
+	while [[ $playerLivePosition -ne $GOAL_OF_THE_GAME ]]
+	do
+		playerPositionTrack
+	done
+}
+
+gameSnakeNLadderControlPanel
+#End of Use Case 05
