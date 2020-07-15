@@ -2,8 +2,14 @@
 
 echo "================ Welcome to SNAKES AND LADDERS ================"
 
-#Apply values to variables
-SINGLE_PLAYER=1;
+#Constants
+SINGLE_POSITION=1;
 POSITION_OF_PLAYER=0;
 
-#End of Use Case 01
+function playerThrowsDice() {
+	randomDiceRolls=$((RANDOM%6+1))
+	echo $randomDiceRolls
+}
+
+playerThrowDice
+#End of Use Case 02
