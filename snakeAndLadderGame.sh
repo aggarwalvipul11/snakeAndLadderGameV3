@@ -35,10 +35,12 @@ function playerPostionTrack() {
 	esac
 }
 
+function playerReachTowardsGoal() {
+	while [[ playerLivePosition -le GOAL_OF_THE_GAME ]]
+	do
+		playerPositionTrack
+	done
+}
 
-while [[ playerLivePosition -le GOAL_OF_THE_GAME ]]
-do
-	playerPositionTrack
-done
-
+playerReachTowardsGoal
 #End of Use Case 04
