@@ -3,14 +3,12 @@
 echo "================ Welcome to SNAKES AND LADDERS ================"
 
 #CONSTANTS
-SINGLE_PLAYER=1;
 GOAL_OF_THE_GAME=100;
-
-playerLivePosition=0;
-
 PLAYER_GETS_NO_PLAY=0;
 PLAYER_GETS_LADDER=1;
 PLAYER_GETS_SNAKE=2;
+
+playerLivePosition=0;
 
 function playerThrowsDice() {
 	echo $((RANDOM%6+1))
@@ -37,7 +35,8 @@ function playerPostionTrack() {
 	esac
 }
 
-while [[ playerLivePosition -le goalOfTheGame ]]
+
+while [[ playerLivePosition -le GOAL_OF_THE_GAME ]]
 do
 	playerPositionTrack
 done
