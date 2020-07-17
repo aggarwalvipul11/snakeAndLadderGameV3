@@ -5,19 +5,19 @@ echo "================ Welcome to SNAKES AND LADDERS ================"
 #CONSTANTS
 SINGLE_PLAYER=1;
 GOAL_OF_THE_GAME=100;
+PLAYER_GETS_NO_PLAY=0;
+PLAYER_GETS_LADDER=1;
+PLAYER_GETS_SNAKE=2;
 
+#Assign varables with values
 playerLivePosition=0;
 collectDiceRollsWinGame=0;
-
 playerOneGameTrack=0;
 playerTwoGameTrack=0;
 playerOneLivePosition=0;
 playerTwoLivePosition=0;
 tryAgain=0;
 
-PLAYER_GETS_NO_PLAY=0;
-PLAYER_GETS_LADDER=1;
-PLAYER_GETS_SNAKE=2;
 
 function playerThrowsDice() {
 	echo $(($((RANDOM %6))+1))
@@ -93,11 +93,11 @@ function checksPlayerPositionInCaseOfSnake() {
 
 function findPlayerPosition() {
 	if [[ $playerWhoPlayes == "Player1" ]]
-		then
-			playerOneLivePosition=$playerLivePosition;
-		else
-			playerTwoLivePosition=$playerLivePosition;
-		fi
+	then
+		playerOneLivePosition=$playerLivePosition;
+	else
+		playerTwoLivePosition=$playerLivePosition;
+	fi
 }
 
 function gameSnakeNLadderControlPanel() {
