@@ -3,8 +3,6 @@
 echo "================ Welcome to SNAKES AND LADDERS ================"
 
 #CONSTANTS
-SINGLE_PLAYER=1;
-POSITION_OF_PLAYER=0;
 PLAYER_GETS_NO_PLAY=0;
 PLAYER_GETS_LADDER=1;
 PLAYER_GETS_SNAKE=2;
@@ -21,7 +19,7 @@ function playerPostionTrack() {
 	randomDiceNumber=$(playerThrowDice)
 	case $playerOptions in
 		$PLAYER_GETS_NO_PLAY)
-			playerLivePosition=$((playerLivePosition+0))
+			playerLivePosition=$((playerLivePosition))
 			;;
 		$PLAYER_GETS_LADDER)
 			playerLivePosition=$(($playerLivePosition+$randomDiceNumber))
